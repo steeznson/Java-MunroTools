@@ -39,13 +39,17 @@ public class Handler {
 	}
 	
 	// print output for MunroList
-	public void printOutput() {
+	public void printOutput(int max) {
+		int i = 0;
 		for (Munro theMunro : MunroList) {
-			String name = theMunro.getName();
-			String height = "\t" + theMunro.getHeight();
-			String category = "\t" + theMunro.getCategory();
-			output = name + height + category;
-			System.out.println(output);
+			if (i < max) {
+				String name = theMunro.getName();
+				String height = "\t" + theMunro.getHeight();
+				String category = "\t" + theMunro.getCategory();
+				output = name + height + category;
+				System.out.println(output);
+				++i;
+			}
 		}
 	}
 	
@@ -57,6 +61,16 @@ public class Handler {
 	// order by height
 	public void byHeight() {
 		Collections.sort(MunroList, (thisMunro,thatMunro) -> thisMunro.getHeight() > thatMunro.getHeight() ? 1 : thisMunro.getHeight() < thatMunro.getHeight() ? -1 : 0);
+	}
+	
+	// order by minimum height
+	public void minHeight() {
+		
+	}
+	
+	// order by maximum height
+	public void maxHeight() {
+		
 	}
 	
 	// filter search by hill
