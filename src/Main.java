@@ -10,6 +10,7 @@ public class Main {
 		csv = queryHandler.getCsv();
 		queryHandler.importCSV(csv);
 		
+		queryHandler.displayMunros();
 	}
 
 }
