@@ -6,7 +6,8 @@ public class Munro {
 	private String category;
 	private float height;
 	
-	// get and set methods
+	
+	// get and set
 	public String getName() {
 		return name;
 	}
@@ -25,4 +26,6 @@ public class Munro {
 	public void setHeight(float height) {
 		this.height = height;
 	}
+
+	
 }
