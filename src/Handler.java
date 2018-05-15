@@ -1,21 +1,28 @@
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class Handler {
-	
+
 	//attributes
 	String csv = "Data/munrotab_v6.2.csv";
 	String nextLine;
 	String[] columns;
 	String output;
 	int countLine;
-		
+	int maxHeight;
+	int minHeight;
+
 	//complex attributes
 	ArrayList<Munro> MunroList = new ArrayList<>();
-	
+	List<Munro> MinHeightMunroList = new ArrayList<>();
+	List<Munro> MaxHeightMunroList = new ArrayList<>();
+
 	// methods
 	// parse CSV, create new ArrayList of Munros
 	public void importCSV(String csv) {
@@ -37,7 +44,7 @@ public class Handler {
 			e.printStackTrace();
 		}
 	}
-	
+
 	// print output for MunroList
 	public void printOutput(int max) {
 		int i = 0;
@@ -52,27 +59,36 @@ public class Handler {
 			}
 		}
 	}
-	
+
 	// order by name
 	public void byName() {
 		Collections.sort(MunroList, (thisMunro,thatMunro) -> thisMunro.getName().compareToIgnoreCase(thatMunro.getName()));
 	}
-	
+
 	// order by height
 	public void byHeight() {
-		Collections.sort(MunroList, (thisMunro,thatMunro) -> thisMunro.getHeight() > thatMunro.getHeight() ? 1 : thisMunro.getHeight() < thatMunro.getHeight() ? -1 : 0);
+		Collections.sort(MunroList, (thisMunro,thatMunro) -> thisMunro.getHeight() > thatMunro.getHeight() ? 1 :
+			thisMunro.getHeight() < thatMunro.getHeight() ? -1 : 0);
 	}
-	
+
 	// order by minimum height
-	public void minHeight() {
-		
+	public void byMinHeight(int minHeight) {
+		MinHeightMunroList = MunroList.stream().filter(theMunro -> theMunro.getHeight() > minHeight).collect(Collectors.toList());
+		MunroList.clear();
+		for (Munro theMunro : MinHeightMunroList) {
+			MunroList.add(theMunro);
+		}
 	}
-	
+
 	// order by maximum height
-	public void maxHeight() {
-		
+	public void byMaxHeight(int maxHeight) {
+		MaxHeightMunroList = MunroList.stream().filter(theMunro -> theMunro.getHeight() < maxHeight).collect(Collectors.toList());
+		MunroList.clear();
+		for (Munro theMunro : MaxHeightMunroList) {
+			MunroList.add(theMunro);
+		}
 	}
-	
+
 	// filter search by hill
 	public void filterHills() {
 		Iterator<Munro> iterate = MunroList.iterator();

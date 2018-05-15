@@ -5,8 +5,8 @@ public class Munro {
 	private String name;
 	private String category;
 	private float height;
-	
-	
+
+
 	// get and set
 	public String getName() {
 		return name;
@@ -27,5 +27,5 @@ public class Munro {
 		this.height = height;
 	}
 
-	
+
 }
