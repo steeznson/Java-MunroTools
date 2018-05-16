@@ -5,7 +5,7 @@ public class Munro {
 	private String name;
 	private String category;
 	private float height;
-
+	
 
 	// get and set
 	public String getName() {

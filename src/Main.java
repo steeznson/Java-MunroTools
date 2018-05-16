@@ -1,6 +1,5 @@
 
-import java.util.InputMismatchException;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
 
@@ -65,36 +64,36 @@ public class Main {
 				break;
 			case (1):
 				queryHandler.printOutput(max);
-			break;
+				break;
 			case (2):
 				queryHandler.filterHills();
-			queryHandler.printOutput(max);
-			break;
+				queryHandler.printOutput(max);
+				break;
 			case (3):
 				queryHandler.byName();
-			queryHandler.printOutput(max);
-			break;
+				queryHandler.printOutput(max);
+				break;
 			case (4):
 				queryHandler.byHeight();
-			queryHandler.printOutput(max);
-			break;
+				queryHandler.printOutput(max);
+				break;
 			case (5):
 				queryHandler.filterHills();
-			queryHandler.byName();
-			queryHandler.printOutput(max);
-			break;
+				queryHandler.byName();
+				queryHandler.printOutput(max);
+				break;
 			case (6):
 				queryHandler.byMinHeight(minHeight);
-			queryHandler.printOutput(max);
-			break;
+				queryHandler.printOutput(max);
+				break;
 			case (7):
 				queryHandler.byMaxHeight(maxHeight);
-			queryHandler.printOutput(max);
-			break;
+				queryHandler.printOutput(max);
+				break;
 			case (8):
 				takeInput.close();
-			System.exit(0);
-			break;
+				System.exit(0);
+				break;
 			}
 
 		} while (true);
