@@ -15,10 +15,8 @@ public class Handler {
 	int minHeight;
 
 	//complex attributes
-	ArrayList<Munro> MunroList = new ArrayList<>();
-	List<Munro> MinHeightMunroList = new ArrayList<>();
-	List<Munro> MaxHeightMunroList = new ArrayList<>();
-
+	List<Munro> MunroList = new ArrayList<Munro>();
+	
 	// methods
 	// parse CSV, create new ArrayList of Munros
 	public void importCSV(String csv) {
@@ -69,31 +67,17 @@ public class Handler {
 
 	// order by minimum height
 	public void byMinHeight(int minHeight) {
-		MinHeightMunroList = MunroList.stream().filter(theMunro -> theMunro.getHeight() > minHeight).collect(Collectors.toList());
-		MunroList.clear();
-		for (Munro theMunro : MinHeightMunroList) {
-			MunroList.add(theMunro);
-		}
+		MunroList = MunroList.stream().filter(theMunro -> theMunro.getHeight() >= minHeight).collect(Collectors.toList());
 	}
 
 	// order by maximum height
 	public void byMaxHeight(int maxHeight) {
-		MaxHeightMunroList = MunroList.stream().filter(theMunro -> theMunro.getHeight() < maxHeight).collect(Collectors.toList());
-		MunroList.clear();
-		for (Munro theMunro : MaxHeightMunroList) {
-			MunroList.add(theMunro);
-		}
+		MunroList = MunroList.stream().filter(theMunro -> theMunro.getHeight() <= maxHeight).collect(Collectors.toList());
 	}
 
 	// filter search by hill
 	public void filterHills() {
-		Iterator<Munro> iterate = MunroList.iterator();
-		while (iterate.hasNext()) {
-			Munro theMunro = iterate.next();
-			if (theMunro.getCategory().equals("TOP") || theMunro.getCategory().equals("")) {
-				iterate.remove();
-			}
-		}
+		MunroList = MunroList.stream().filter(theMunro -> theMunro.getCategory().equals("MUN")).collect(Collectors.toList());
 	}
 
 	// get and set

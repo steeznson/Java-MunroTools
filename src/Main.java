@@ -45,7 +45,7 @@ public class Main {
 						throw new InputMismatchException();
 					}
 				} catch (InputMismatchException e) {
-					System.out.println("Please choose a number between 1 and 8");
+					System.out.println("Please choose a number between 1 and 6");
 				}
 
 				if (choice == 6){
