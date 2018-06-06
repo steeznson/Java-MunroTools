@@ -3,7 +3,7 @@ import java.io.*;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class Handler {
+public class Handler implements HandlerInterface {
 
 	//attributes
 	String csv = "Data/munrotab_v6.2.csv";
@@ -78,6 +78,44 @@ public class Handler {
 	// filter search by hill
 	public void filterHills() {
 		MunroList = MunroList.stream().filter(theMunro -> theMunro.getCategory().equals("MUN")).collect(Collectors.toList());
+	}
+	
+	// construct output as String
+	public String munroListToString(int max) {
+		String result = "";
+		int i = 0;
+		for (Munro theMunro : MunroList) {
+			if (i < max) {
+				String name = theMunro.getName();
+				String height = "\t" + theMunro.getHeight();
+				String category = "\t" + theMunro.getCategory();
+				output = name + height + category + "\n";
+				result += output;
+				++i;
+			}
+		}
+		return result;
+	}
+	
+	// interface method
+	public String query(String csv, boolean alphabetical, boolean ascending, boolean onlyPeaks, int numResults, int minHeight, int maxHeight) {
+		// manipulate MunroList as query dictates
+		if (alphabetical) {
+			byName();
+		}
+		if (ascending) {
+			byHeight();
+		}
+		if (onlyPeaks) {
+			filterHills();
+		}
+		byMinHeight(minHeight);
+		byMaxHeight(maxHeight);
+		
+		// create a String out of the MunroList
+		String result = munroListToString(numResults);
+	
+		return result;
 	}
 
 	// get and set

@@ -1,6 +1,7 @@
 
 import java.util.*;
 
+// to use handler as CLI app
 public class Main {
 
 	public static void main(String[] args) {
@@ -42,6 +43,7 @@ public class Main {
 				try{
 					choice = takeInput.nextInt();
 					if (choice > 8) {
+						takeInput.close();
 						throw new InputMismatchException();
 					}
 				} catch (InputMismatchException e) {
